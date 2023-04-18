@@ -180,7 +180,7 @@ Conditional_tbl <- Detections_tbl %>%
   column_spec(2, italic = T) %>% 
   pack_rows(colnum = 1, index = table(Detections_tbl$PropCat), hline_after = T, bold = T) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
-  footnote(general = "The bolded categories are general thresholds that denote whether that taxas presence was Dominant (>75%), Common (75-50%), Occasional (50-25%), or Rare (<25%) across the entirity of sampling.", alphabet = c("Detections refer to samples where eDNA of the specified taxa was present.", "The proportion is the fraction of samples which the eDNA was present across the entirety of sampling.", "Read Frequency represents the mean read frequency per positive detection sample."), threeparttable = T)
+  footnote(general = "The bolded categories are general thresholds that denote whether that taxas presence was Dominant (>75%), Common (75-50%), Occasional (50-25%), or Rare (<25%) across the entirity of sampling.", alphabet = c("Detections refer to samples where eDNA of the specified taxa was present.", "The proportion is the fraction of samples which eDNA was present across the entirety of sampling.", "Read Frequency represents the mean read frequency per positive detection sample."), threeparttable = T)
 
 Conditional_tbl
 ```
