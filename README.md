@@ -2,6 +2,19 @@
  
 ### General 
 Repository for files and scripts related to the automated eDNA Projects results report.
+
+### Installation
+
+In order to generate the summary report PDF, you will need the following:
+
+1. **R version >4.0** Available through FWS Apps-to-Go.
+1. **Dependent R Packages** The 'Package Install and Import' chunk at the beggining of the .Rmd will install, if necessary, any missing packages and then imports them.
+1. **TeX** Install `tinytex` in R using the following commands and following the onscreen prompts: 
+
+    ```{r, eval = FALSE}
+    install.packages("tinytex")
+    tinytex::install_tinytex()
+    ```
  
  ### Description
 This repository contains an Rmarkdown script that was created to generate an eDNA metabarcoding results summary report. This report summarises fish identification results from eDNA data and provides end-users with a brief snapshot of their results. This summary report is one of a few products provided to end-users to interpret the results from their sampling. The other products include the raw data and an interactive dashboard that provides users with a map-centric view of their sampling results. No raw data is provided in this repository, only the code associated with creating the report and a schema of the database. The data is private and only users who have access to [USFWS eDNA Projects](https://fws.maps.arcgis.com/home/group.html?id=248ba33ddea64eaab9960888bdce9890#overview) ArcGIS Online (AGOL) group can view the data.
