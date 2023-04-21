@@ -17,13 +17,29 @@ params:
   Project: "Downeast Maine"
 ---
 
-```{r Package Import, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, results = 'hide'}
-library(tidyverse)
-library(lubridate)
-library(janitor)
-library(arcgisbinding)
-library(kableExtra)
-library(magrittr)
+```{r Package Install and Import, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, results = 'hide'}
+
+## Install and load packages
+
+# Create vector of packages
+
+requiredPackages <- c("tidyverse", "lubridate", "janitor", "arcgisbinding", "kableExtra", "magrittr")
+
+# Function to install and load any packages not installed
+
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg))
+  install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# Load packages
+
+ipak(requiredPackages)
+
+# Set table option
+
 options(knitr.kable.NA = '', knitr.table.format = "latex")
 ```
 
