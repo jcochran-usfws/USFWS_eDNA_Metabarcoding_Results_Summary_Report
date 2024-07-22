@@ -13,8 +13,8 @@ output:
   pdf_document:
     df_print: paged
 params:
-  Year: "2022" 
-  Project: "Downeast Maine"
+  Year: "2023" 
+  Project: "St. Lawrence River Tench"
 ---
 
 ```{r Package Install and Import, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, results = 'hide'}
@@ -58,7 +58,7 @@ eDNA_ID_AGOL <- arc.open("https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/re
 ### Create Data Frames
 
 eDNA_Site_tbl <- arc.select(eDNA_Site_AGOL, names(eDNA_Site_AGOL@fields)) %>% 
-  mutate(Year = year(DateTime))
+  mutate(Year = year(DateTime)) 
 
 eDNA_Sample_tbl <- arc.select(eDNA_Sample_AGOL, names(eDNA_Sample_AGOL@fields)) 
 
@@ -88,7 +88,7 @@ Results_data_NC <- eDNA_Site_tbl %>%
   filter(Sample_Type == "Filter") %>% # Removes Control related results
   left_join(., eDNA_ID_tbl, by = c("globalid.y" = "parentglobalid")) %>% 
   filter(Project == params$Project & Year == params$Year) %>% 
-  filter(Threshold_Value == 0.01) %>% 
+  filter(Threshold_Value == 0.001) %>% 
   select(SiteID, Agency, Project, DateTime, Sample_Type, Sample_Barcode, Common_Name, Scientific_Name, Forward_Primer, Forward_Primer_Sequence, Reverse_Primer, Reverse_Primer_Sequence, Gene_Target, Read_Count, Read_Frequency)
 
 ```
@@ -181,7 +181,7 @@ Detections_tbl <- Results_data_NC %>%
   mutate(PropCat = if_else(Proportion <= 0.24, "Rare", if_else(Proportion >= 0.25 & Proportion <= 0.50, "Occasional", if_else(Proportion >= 0.51 & Proportion <= 0.75, "Common", "Dominant")))) %>% 
   select(PropCat, `Common Name`, `Scientific Name`, Detections, Proportion, `Read Frequency`) %>% 
   mutate(PropCat = factor(PropCat, levels = Cat_Order)) %>% 
-  arrange(PropCat)
+  arrange(PropCat, `Common Name`)
   
 
 colnames(Detections_tbl)[4] <- paste0("Detections", footnote_marker_alphabet(1))
