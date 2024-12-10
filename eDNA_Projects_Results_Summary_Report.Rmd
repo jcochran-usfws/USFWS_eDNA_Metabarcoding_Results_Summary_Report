@@ -14,7 +14,7 @@ output:
     df_print: paged
 params:
   Year: "2023" 
-  Project: "St. Lawrence River Tench"
+  Project: "Downeast Maine"
 ---
 
 ```{r Package Install and Import, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, results = 'hide'}
